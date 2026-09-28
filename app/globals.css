@@ -1,26 +1,279 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand */
+  --primary: #6fd3a6;
+  --primary-hover: #5fc596;
+  --primary-soft: #e9f8f1;
+
+  /* Backgrounds */
   --background: #ffffff;
-  --foreground: #171717;
+  --background-soft: #f7faf8;
+  --surface: #ffffff;
+  --surface-muted: #f4f7f5;
+
+  /* Text */
+  --foreground: #1f2a24;
+  --muted-foreground: #7a857f;
+  --subtle-foreground: #9ca6a0;
+
+  /* Borders */
+  --border: #e4e9e6;
+  --border-strong: #d6ddd9;
+
+  /* Status */
+  --success: #5fc596;
+  --success-soft: #e8f7f0;
+
+  --warning: #d8a44d;
+  --warning-soft: #fbf3e4;
+
+  --danger: #d96c6c;
+  --danger-soft: #fbeaea;
+
+  /* Other */
+  --ring: #6fd3a6;
+  --overlay: rgba(0, 0, 0, 0.35);
+
+  /* Motion */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Colors reference the :root variables so they can be swapped later (e.g. dark mode). */
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+
   --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Radius and shadow are theme-independent, so they live directly in @theme. */
+@theme {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-card: 0 4px 20px rgba(31, 42, 36, 0.06);
+  --shadow-card-hover: 0 10px 30px rgba(31, 42, 36, 0.1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Entrance motion: subtle fade + directional reveal, used for on-load polish. */
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up-scale {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@layer utilities {
+  .animate-fade-down {
+    animation: fade-down 450ms var(--ease-premium) both;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 600ms var(--ease-premium) both;
+  }
+
+  .animate-fade-up-scale {
+    animation: fade-up-scale 700ms var(--ease-premium) both;
+  }
+
+  .animate-grow-bar {
+    transform-origin: left;
+    animation: grow-bar 800ms var(--ease-premium) both;
+  }
+
+  /* Shared stagger scale (100ms steps) so entrance delays stay consistent
+     instead of one-off values scattered across components. */
+  .stagger-1 {
+    animation-delay: 100ms;
+  }
+  .stagger-2 {
+    animation-delay: 200ms;
+  }
+  .stagger-3 {
+    animation-delay: 300ms;
+  }
+  .stagger-4 {
+    animation-delay: 400ms;
+  }
+  .stagger-5 {
+    animation-delay: 500ms;
+  }
+  .stagger-6 {
+    animation-delay: 600ms;
+  }
+  .stagger-7 {
+    animation-delay: 700ms;
+  }
+  .stagger-8 {
+    animation-delay: 800ms;
+  }
+}
+
+/* Scroll-triggered reveal: same easing/duration language as the load-in
+   animations above, but toggled by the Reveal component via IntersectionObserver
+   instead of running automatically. Elements start hidden and settle into
+   place once `.is-visible` is added; they never revert. */
+.reveal {
+  transition:
+    opacity 600ms var(--ease-premium),
+    transform 600ms var(--ease-premium);
+}
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.reveal-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade-in {
+  opacity: 0;
+}
+.reveal-fade-in.is-visible {
+  opacity: 1;
+}
+
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.98);
+}
+.reveal-scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Progress-bar fill reveal: nest `.reveal-bar` on a bar fill inside any
+   Reveal-wrapped ancestor and it grows once that ancestor becomes visible —
+   no extra observer needed. */
+.reveal-bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 700ms var(--ease-premium);
+}
+.is-visible .reveal-bar {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-down,
+  .animate-fade-up,
+  .animate-fade-up-scale,
+  .animate-grow-bar {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-fade-up,
+  .reveal-fade-in,
+  .reveal-scale-in {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-bar {
+    transition: none;
+    transform: scaleX(1);
+  }
 }
