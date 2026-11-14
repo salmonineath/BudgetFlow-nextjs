@@ -33,7 +33,7 @@ export function DashboardPreview() {
           <span className="font-medium uppercase tracking-wide text-muted-foreground">
             Remaining Balance
           </span>
-          <span className="font-medium text-primary">42% spent</span>
+          <span className="font-medium text-primary-text">42% spent</span>
         </div>
 
         <p className="mt-1 text-3xl font-bold text-foreground">$290.00</p>
@@ -90,7 +90,7 @@ export function DashboardPreview() {
 
       <div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-xs">
         <span className="text-muted-foreground">Total manual entries: 6</span>
-        <span className="font-medium text-primary">+ Add Expense (Instant)</span>
+        <span className="font-medium text-primary-text">+ Add Expense (Instant)</span>
       </div>
     </div>
   );

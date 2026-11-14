@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 import { Reveal } from "@/components/ui/reveal";
 
 const FOOTER_LINKS = [
@@ -15,26 +16,7 @@ export function Footer() {
       <Reveal variant="fade-in" className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
           <div className="flex flex-col items-center gap-2 md:flex-row md:items-center md:gap-3">
-            <div className="flex items-center gap-2">
-              <span className="flex size-7 items-center justify-center rounded-full border border-primary/30 bg-primary-soft text-primary md:hidden">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M6 15c0-3.314 2.686-6 6-6s6 2.686 6 6" />
-                </svg>
-              </span>
-              <span className="text-base font-bold text-foreground">
-                BudgetFlow
-              </span>
-            </div>
+            <Logo markClassName="size-7" className="text-base" />
             <span className="hidden text-border-strong md:inline">|</span>
             <span className="text-sm text-muted-foreground">
               Mindful, manual budgeting.
@@ -60,7 +42,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col items-center gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-left">
           <p>
-            © 2025 BudgetFlow. Mindful architecture. Designed for
+            © { new Date().getFullYear()} SansamApp. Mindful architecture. Designed for
             deliberate, peaceful balance.
           </p>
           <p>100% manual. No bank tracking or data monetization.</p>

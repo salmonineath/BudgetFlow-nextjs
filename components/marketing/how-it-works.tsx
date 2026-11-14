@@ -22,7 +22,7 @@ function StatPill({
       <span
         className={
           tone === "primary"
-            ? "font-bold text-primary"
+            ? "font-bold text-primary-text"
             : "font-bold text-foreground"
         }
       >
@@ -54,7 +54,7 @@ function PillList({
           <span
             className={
               tone === "primary"
-                ? "font-semibold text-primary"
+                ? "font-semibold text-primary-text"
                 : "font-semibold text-foreground"
             }
           >
@@ -120,7 +120,7 @@ export function HowItWorks() {
         <Reveal>
           <SectionHeading
             eyebrow="The Core Rhythm"
-            title="How BudgetFlow works"
+            title="How SansamApp works"
             subtitle="A simple 4-step cadence: Plan → Record → Track → Adjust."
           />
         </Reveal>

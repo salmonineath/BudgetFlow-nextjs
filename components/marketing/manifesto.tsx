@@ -32,7 +32,7 @@ function CheckIcon() {
       strokeWidth="3"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-primary"
+      className="text-primary-text"
       aria-hidden="true"
     >
       <path d="M20 6 9 17l-5-5" />
@@ -42,13 +42,13 @@ function CheckIcon() {
 
 export function Manifesto() {
   return (
-    <section id="why-manual" className="bg-background-soft px-6 py-16 md:py-24">
+    <section id="why-sansamapp" className="bg-background-soft px-6 py-16 md:py-24">
       <Reveal className="mx-auto max-w-5xl rounded-3xl border border-border bg-surface p-6 sm:p-10">
         <SectionHeading
           align="left"
           eyebrow="Product Manifesto"
           title="You stay in control."
-          subtitle="BudgetFlow doesn't tell you how to spend your money. You create your own budget, choose your own categories, and make your own decisions."
+          subtitle="SansamApp doesn't tell you how to spend your money. You create your own budget, choose your own categories, and make your own decisions."
         />
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">

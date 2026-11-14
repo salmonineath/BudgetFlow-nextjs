@@ -36,7 +36,7 @@ export function Features() {
       <Reveal>
         <SectionHeading
           title="Budgeting without the complexity."
-          subtitle="You decide the plan. BudgetFlow simply helps you keep track of it — clean, quiet, and deliberate."
+          subtitle="You decide the plan. SansamApp simply helps you keep track of it — clean, quiet, and deliberate."
         />
       </Reveal>
 
@@ -44,7 +44,7 @@ export function Features() {
         {FEATURES.map((feature, index) => (
           <Reveal key={feature.title} delay={index * 100} className="h-full">
             <div className="flex h-full flex-col gap-4 rounded-2xl border border-border bg-background-soft p-6 transition duration-300 ease-out hover:border-border-strong hover:shadow-card-hover">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+              <span className="flex size-11 items-center justify-center rounded-xl bg-primary-soft text-primary-text">
                 <svg
                   width="20"
                   height="20"
