@@ -22,7 +22,7 @@ function StatPill({
       <span
         className={
           tone === "primary"
-            ? "font-bold text-primary"
+            ? "font-bold text-primary-text"
             : "font-bold text-foreground"
         }
       >
@@ -54,7 +54,7 @@ function PillList({
           <span
             className={
               tone === "primary"
-                ? "font-semibold text-primary"
+                ? "font-semibold text-primary-text"
                 : "font-semibold text-foreground"
             }
           >
@@ -90,7 +90,8 @@ const STEPS = [
   {
     number: 3,
     title: "Add your expenses",
-    description: "Type the amount and category as you spend. Fast & deliberate.",
+    description:
+      "Type the amount and category as you spend. Fast & deliberate.",
     preview: (
       <PillList
         tone="primary"
@@ -104,8 +105,7 @@ const STEPS = [
   {
     number: 4,
     title: "Track remaining money",
-    description:
-      "Watch balances update instantly so you always feel calm.",
+    description: "Watch balances update instantly so you always feel calm.",
     preview: <StatPill label="Remaining Buffer" value="$290" tone="primary" />,
   },
 ];
@@ -120,7 +120,7 @@ export function HowItWorks() {
         <Reveal>
           <SectionHeading
             eyebrow="The Core Rhythm"
-            title="How BudgetFlow works"
+            title="How SansamApp works"
             subtitle="A simple 4-step cadence: Plan → Record → Track → Adjust."
           />
         </Reveal>

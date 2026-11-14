@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BudgetFlow",
+  title: "SansamApp",
   description: "Smart budgeting without the complexity.",
 };
 

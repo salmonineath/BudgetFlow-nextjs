@@ -5,6 +5,7 @@
   --primary: #6fd3a6;
   --primary-hover: #5fc596;
   --primary-soft: #e9f8f1;
+  --primary-text: #176b48;
 
   /* Backgrounds */
   --background: #ffffff;
@@ -14,25 +15,26 @@
 
   /* Text */
   --foreground: #1f2a24;
-  --muted-foreground: #7a857f;
-  --subtle-foreground: #9ca6a0;
+  --muted-foreground: #566159;
+  --subtle-foreground: #66716b;
 
   /* Borders */
   --border: #e4e9e6;
   --border-strong: #d6ddd9;
+  --border-control: #848f89;
 
   /* Status */
-  --success: #5fc596;
+  --success: #17704a;
   --success-soft: #e8f7f0;
 
-  --warning: #d8a44d;
+  --warning: #7d5200;
   --warning-soft: #fbf3e4;
 
-  --danger: #d96c6c;
+  --danger: #b02f2f;
   --danger-soft: #fbeaea;
 
   /* Other */
-  --ring: #6fd3a6;
+  --ring: #176b48;
   --overlay: rgba(0, 0, 0, 0.35);
 
   /* Motion */
@@ -44,6 +46,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-soft: var(--primary-soft);
+  --color-primary-text: var(--primary-text);
 
   --color-background: var(--background);
   --color-background-soft: var(--background-soft);
@@ -56,6 +59,7 @@
 
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
+  --color-border-control: var(--border-control);
 
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
@@ -104,6 +108,11 @@
   textarea {
     font: inherit;
     color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 
   a {
