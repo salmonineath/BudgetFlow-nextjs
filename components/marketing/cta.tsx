@@ -13,8 +13,8 @@ export function Cta() {
 
         <Reveal delay={100}>
           <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Create your plan, track your spending, and always know what you
-            have left.
+            Create your plan, track your spending, and always know what you have
+            left.
           </p>
         </Reveal>
 
@@ -42,8 +42,7 @@ export function Cta() {
 
         <Reveal delay={300}>
           <p className="mt-4 text-xs text-muted-foreground">
-            No credit card required · No bank credentials needed · Instant
-            setup
+            No credit card required · No bank credentials needed · Instant setup
           </p>
         </Reveal>
       </div>

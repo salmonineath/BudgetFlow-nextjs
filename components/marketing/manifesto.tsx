@@ -42,7 +42,10 @@ function CheckIcon() {
 
 export function Manifesto() {
   return (
-    <section id="why-sansamapp" className="bg-background-soft px-6 py-16 md:py-24">
+    <section
+      id="why-sansamapp"
+      className="bg-background-soft px-6 py-16 md:py-24"
+    >
       <Reveal className="mx-auto max-w-5xl rounded-3xl border border-border bg-surface p-6 sm:p-10">
         <SectionHeading
           align="left"

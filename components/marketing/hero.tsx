@@ -27,7 +27,6 @@ export function Hero() {
     <section id="features" className="mx-auto max-w-6xl px-6 py-16 md:py-24">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="flex flex-col items-center gap-6 text-center lg:items-start lg:text-left">
-
           <h1 className="animate-fade-up stagger-2 text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl md:text-6xl">
             Simple budgeting.
             <br />
@@ -35,9 +34,9 @@ export function Hero() {
           </h1>
 
           <p className="animate-fade-up stagger-3 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Create your monthly budget, track your expenses, and always know
-            how much you have left — without bank connections, complicated
-            tools, or financial advice.
+            Create your monthly budget, track your expenses, and always know how
+            much you have left — without bank connections, complicated tools, or
+            financial advice.
           </p>
 
           <div className="animate-fade-up stagger-4 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">

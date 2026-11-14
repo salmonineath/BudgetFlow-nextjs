@@ -119,14 +119,16 @@ export function Navbar() {
           >
             {NAV_LINKS.map((link) => {
               const isActive = link.href === activeHref;
-              const isHighlighted = link.href === (pointerHref ?? focusedHref ?? activeHref);
+              const isHighlighted =
+                link.href === (pointerHref ?? focusedHref ?? activeHref);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => selectHref(link.href)}
                   onPointerEnter={(event) => {
-                    if (event.pointerType === "mouse") setPointerHref(link.href);
+                    if (event.pointerType === "mouse")
+                      setPointerHref(link.href);
                   }}
                   onFocus={(event) => {
                     if (event.currentTarget.matches(":focus-visible")) {
@@ -141,7 +143,11 @@ export function Navbar() {
                     <motion.span
                       layoutId="navbar-pill"
                       className="absolute inset-0 rounded-full bg-foreground shadow-card"
-                      transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 40,
+                      }}
                     />
                   )}
                   {/* Difference blend keeps the label readable on both the header and the

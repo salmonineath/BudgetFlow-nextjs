@@ -51,7 +51,7 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
     );
 
     observer.observe(node);
@@ -61,7 +61,12 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={["reveal", VARIANT_CLASS[variant], visible && "is-visible", className]
+      className={[
+        "reveal",
+        VARIANT_CLASS[variant],
+        visible && "is-visible",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}

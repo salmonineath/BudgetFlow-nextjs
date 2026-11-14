@@ -100,9 +100,7 @@ export function InterfacePreview() {
               <p className="text-xs text-muted-foreground">
                 Monthly Planned Pool
               </p>
-              <p className="mt-1 text-xl font-bold text-foreground">
-                $500.00
-              </p>
+              <p className="mt-1 text-xl font-bold text-foreground">$500.00</p>
               <p className="mt-1 text-xs text-muted-foreground">
                 100% assigned
               </p>
@@ -110,9 +108,7 @@ export function InterfacePreview() {
 
             <div>
               <p className="text-xs text-muted-foreground">Spent So Far</p>
-              <p className="mt-1 text-xl font-bold text-foreground">
-                $210.00
-              </p>
+              <p className="mt-1 text-xl font-bold text-foreground">$210.00</p>
               <p className="mt-1 text-xs text-primary-text">42% utilized</p>
             </div>
           </div>

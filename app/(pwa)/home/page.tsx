@@ -12,7 +12,7 @@ export default function HomePage() {
         <p className="mt-2 text-4xl font-bold">$65.00</p>
 
         <p className="mt-3 text-sm text-primary-soft">
-          You're on track this month.
+          You&apos;re on track this month.
         </p>
       </section>
 

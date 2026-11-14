@@ -42,8 +42,8 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col items-center gap-2 border-t border-border pt-6 text-center text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:text-left">
           <p>
-            © { new Date().getFullYear()} SansamApp. Mindful architecture. Designed for
-            deliberate, peaceful balance.
+            © {new Date().getFullYear()} SansamApp. Mindful architecture.
+            Designed for deliberate, peaceful balance.
           </p>
           <p>100% manual. No bank tracking or data monetization.</p>
         </div>

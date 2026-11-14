@@ -28,9 +28,7 @@ export function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="text-base text-muted-foreground sm:text-lg">
-          {subtitle}
-        </p>
+        <p className="text-base text-muted-foreground sm:text-lg">{subtitle}</p>
       )}
     </div>
   );

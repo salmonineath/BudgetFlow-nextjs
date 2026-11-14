@@ -90,7 +90,8 @@ const STEPS = [
   {
     number: 3,
     title: "Add your expenses",
-    description: "Type the amount and category as you spend. Fast & deliberate.",
+    description:
+      "Type the amount and category as you spend. Fast & deliberate.",
     preview: (
       <PillList
         tone="primary"
@@ -104,8 +105,7 @@ const STEPS = [
   {
     number: 4,
     title: "Track remaining money",
-    description:
-      "Watch balances update instantly so you always feel calm.",
+    description: "Watch balances update instantly so you always feel calm.",
     preview: <StatPill label="Remaining Buffer" value="$290" tone="primary" />,
   },
 ];
