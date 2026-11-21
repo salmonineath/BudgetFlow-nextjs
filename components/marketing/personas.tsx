@@ -18,7 +18,7 @@ const PERSONAS = [
     emoji: "🌱",
     title: "Anyone Starting Out",
     description:
-      "A simple, friendly place to create and manage your own monthly financial plan with zero anxiety and total privacy.",
+      "A simple, friendly place to create and manage your own monthly financial plan at your own pace.",
   },
 ];
 

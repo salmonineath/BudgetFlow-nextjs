@@ -1,46 +1,8 @@
+import { formatDemoMoney, type LandingDemo } from "./demo-data";
 import { SectionHeading } from "./section-heading";
 import { Reveal } from "@/components/ui/reveal";
 
-const CATEGORIES = [
-  {
-    emoji: "🥗",
-    name: "Food",
-    status: "$50 left",
-    completed: false,
-    planned: "$120",
-    spent: "$70",
-    percent: 58,
-  },
-  {
-    emoji: "🏡",
-    name: "Rent",
-    status: "Completed",
-    completed: true,
-    planned: "$150",
-    spent: "$150",
-    percent: 100,
-  },
-  {
-    emoji: "💡",
-    name: "Bills",
-    status: "$40 left",
-    completed: false,
-    planned: "$80",
-    spent: "$40",
-    percent: 50,
-  },
-  {
-    emoji: "🚆",
-    name: "Transport",
-    status: "$30 left",
-    completed: false,
-    planned: "$50",
-    spent: "$20",
-    percent: 40,
-  },
-];
-
-export function InterfacePreview() {
+export function InterfacePreview({ demo }: { demo: LandingDemo }) {
   return (
     <section id="preview" className="mx-auto max-w-6xl px-6 py-16 md:py-24">
       <Reveal>
@@ -63,17 +25,17 @@ export function InterfacePreview() {
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-bold text-foreground sm:text-base">
-                September 2025
+                {demo.period}
               </p>
               <p className="truncate text-xs text-muted-foreground">
-                Manual Monthly Allocation
+                Example Monthly Allocation
               </p>
             </div>
           </div>
 
           <div className="flex shrink-0 items-center gap-2">
             <span className="hidden rounded-full bg-primary-soft px-3 py-1.5 text-xs font-medium text-foreground sm:inline-flex">
-              Active Cycle
+              Example Cycle
             </span>
             <span className="shrink-0 rounded-full bg-primary px-2.5 py-1.5 text-xs font-semibold text-foreground sm:px-4">
               + Add Expense
@@ -86,10 +48,10 @@ export function InterfacePreview() {
             <div>
               <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary-text">
                 <span className="size-1.5 rounded-full bg-primary" />
-                Remaining Safe Buffer
+                Remaining Monthly Budget
               </p>
               <p className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">
-                $290.00
+                {formatDemoMoney(demo.remaining)}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 Available for remaining month
@@ -97,28 +59,36 @@ export function InterfacePreview() {
             </div>
 
             <div>
-              <p className="text-xs text-muted-foreground">
-                Monthly Planned Pool
+              <p className="text-xs text-muted-foreground">Monthly Budget</p>
+              <p className="mt-1 text-xl font-bold text-foreground">
+                {formatDemoMoney(demo.budget)}
               </p>
-              <p className="mt-1 text-xl font-bold text-foreground">$500.00</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                100% assigned
+                {formatDemoMoney(demo.assigned, 0)} assigned (
+                {demo.assignedPercent}%)
               </p>
             </div>
 
             <div>
               <p className="text-xs text-muted-foreground">Spent So Far</p>
-              <p className="mt-1 text-xl font-bold text-foreground">$210.00</p>
-              <p className="mt-1 text-xs text-primary-text">42% utilized</p>
+              <p className="mt-1 text-xl font-bold text-foreground">
+                {formatDemoMoney(demo.spent)}
+              </p>
+              <p className="mt-1 text-xs text-primary-text">
+                {demo.spentPercent}% utilized
+              </p>
             </div>
           </div>
 
           <div className="mt-5 h-2 w-full rounded-full bg-border-strong">
-            <div className="reveal-bar h-2 w-[42%] rounded-full bg-primary" />
+            <div
+              className="reveal-bar h-2 rounded-full bg-primary"
+              style={{ width: `${demo.spentPercent}%` }}
+            />
           </div>
           <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-            <span>$210 spent</span>
-            <span>$290 remaining</span>
+            <span>{formatDemoMoney(demo.spent, 0)} spent</span>
+            <span>{formatDemoMoney(demo.remaining, 0)} remaining</span>
           </div>
         </div>
 
@@ -126,11 +96,13 @@ export function InterfacePreview() {
           <p className="text-sm font-semibold text-foreground">
             Category Allocations
           </p>
-          <p className="text-xs text-muted-foreground">4 envelopes defined</p>
+          <p className="text-xs text-muted-foreground">
+            {demo.categories.length} envelopes defined
+          </p>
         </div>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {CATEGORIES.map((category) => (
+          {demo.categories.map((category) => (
             <div
               key={category.name}
               className="rounded-2xl border border-border bg-surface p-5 transition duration-300 ease-out hover:border-border-strong hover:shadow-card-hover"
@@ -146,19 +118,21 @@ export function InterfacePreview() {
                 </div>
                 <span
                   className={
-                    category.completed
+                    category.remaining <= 0
                       ? "text-sm font-semibold text-muted-foreground"
                       : "text-sm font-semibold text-primary-text"
                   }
                 >
-                  {category.status}
+                  {category.remaining <= 0
+                    ? "Fully spent"
+                    : `${formatDemoMoney(category.remaining, 0)} left`}
                 </span>
               </div>
 
               <div className="mt-3 h-2 w-full rounded-full bg-border">
                 <div
                   className={
-                    category.completed
+                    category.remaining <= 0
                       ? "reveal-bar h-2 rounded-full bg-subtle-foreground"
                       : "reveal-bar h-2 rounded-full bg-primary"
                   }
@@ -167,8 +141,8 @@ export function InterfacePreview() {
               </div>
 
               <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-                <span>Planned: {category.planned}</span>
-                <span>Spent: {category.spent}</span>
+                <span>Planned: {formatDemoMoney(category.planned, 0)}</span>
+                <span>Spent: {formatDemoMoney(category.spent, 0)}</span>
               </div>
             </div>
           ))}

@@ -4,8 +4,7 @@ import { Reveal } from "@/components/ui/reveal";
 const PRINCIPLES = [
   {
     title: "No bank connections",
-    description:
-      "We never ask for credentials, bank API tokens, or login screens.",
+    description: "No bank credentials or bank API tokens needed.",
   },
   {
     title: "No automated scraping",
@@ -79,7 +78,7 @@ export function Manifesto() {
             Just your plan, clearly organized.
           </p>
           <p className="text-muted-foreground">
-            100% User Owned Data · Instant CSV Export
+            Manual entries · No bank sync needed
           </p>
         </div>
       </Reveal>

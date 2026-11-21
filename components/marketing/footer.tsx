@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SectionLink } from "./section-link";
 import { Logo } from "@/components/ui/logo";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -6,9 +6,7 @@ const FOOTER_LINKS = [
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Preview", href: "#preview" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-];
+] as const;
 
 export function Footer() {
   return (
@@ -25,16 +23,27 @@ export function Footer() {
 
           <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-sm text-muted-foreground md:gap-x-6">
             {FOOTER_LINKS.map((link, index) => (
-              <span key={link.href} className="flex items-center gap-2">
+              <span key={link.label} className="flex items-center gap-2">
                 {index > 0 && (
                   <span className="text-border-strong md:hidden">·</span>
                 )}
-                <Link
+                <SectionLink
                   href={link.href}
                   className="transition-colors hover:text-foreground"
                 >
                   {link.label}
-                </Link>
+                </SectionLink>
+              </span>
+            ))}
+            {["Privacy Policy", "Terms of Service"].map((label) => (
+              <span key={label} className="flex items-center gap-2">
+                <span className="text-border-strong md:hidden">·</span>
+                <span
+                  aria-disabled="true"
+                  title={`${label} has not been published yet`}
+                >
+                  {label} (unavailable)
+                </span>
               </span>
             ))}
           </nav>
@@ -45,7 +54,7 @@ export function Footer() {
             © {new Date().getFullYear()} SansamApp. Mindful architecture.
             Designed for deliberate, peaceful balance.
           </p>
-          <p>100% manual. No bank tracking or data monetization.</p>
+          <p>Manual budgeting. No bank connection needed.</p>
         </div>
       </Reveal>
     </footer>

@@ -34,16 +34,28 @@ export function LogoMark({ className }: LogoMarkProps) {
 type LogoProps = {
   markClassName?: string;
   className?: string;
+  tagline?: boolean;
 };
 
-export function Logo({ markClassName = "size-8", className }: LogoProps) {
+export function Logo({
+  markClassName = "size-8",
+  className,
+  tagline = false,
+}: LogoProps) {
   return (
     <span
       className={`inline-flex items-center gap-2 font-bold tracking-tight text-foreground ${className ?? ""}`}
     >
       <LogoMark className={`shrink-0 ${markClassName}`} />
-      <span>
-        Sansam<span className="text-primary-hover">App</span>
+      <span className="flex flex-col leading-tight">
+        <span>
+          Sansam<span className="text-primary-hover">App</span>
+        </span>
+        {tagline && (
+          <span className="text-[8px] font-medium uppercase tracking-widest text-muted-foreground">
+            Spend with clarity
+          </span>
+        )}
       </span>
     </span>
   );

@@ -20,10 +20,10 @@ export function Cta() {
 
         <Reveal variant="scale-in" delay={220}>
           <Link
-            href="#"
+            href="/register"
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-foreground transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-hover"
           >
-            Get Started Free
+            Get Started
             <svg
               width="18"
               height="18"
@@ -42,7 +42,7 @@ export function Cta() {
 
         <Reveal delay={300}>
           <p className="mt-4 text-xs text-muted-foreground">
-            No credit card required · No bank credentials needed · Instant setup
+            Manual budgeting · No bank connection needed · Internet required
           </p>
         </Reveal>
       </div>

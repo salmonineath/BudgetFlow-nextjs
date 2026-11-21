@@ -1,3 +1,4 @@
+import { formatDemoMoney, type LandingDemo } from "./demo-data";
 import { SectionHeading } from "./section-heading";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -66,51 +67,61 @@ function PillList({
   );
 }
 
-const STEPS = [
-  {
-    number: 1,
-    title: "Set your monthly budget",
-    description: "Define your total monthly spending pool for the month.",
-    preview: <StatPill label="September Budget" value="$500" />,
-  },
-  {
-    number: 2,
-    title: "Create your categories",
-    description: "Assign your money to the envelopes that matter to you.",
-    preview: (
-      <PillList
-        items={[
-          { label: "Food", value: "$120" },
-          { label: "Rent", value: "$150" },
-          { label: "Bills", value: "$80" },
-        ]}
-      />
-    ),
-  },
-  {
-    number: 3,
-    title: "Add your expenses",
-    description:
-      "Type the amount and category as you spend. Fast & deliberate.",
-    preview: (
-      <PillList
-        tone="primary"
-        items={[
-          { label: "Lunch", value: "-$8.00" },
-          { label: "Internet", value: "-$20.00" },
-        ]}
-      />
-    ),
-  },
-  {
-    number: 4,
-    title: "Track remaining money",
-    description: "Watch balances update instantly so you always feel calm.",
-    preview: <StatPill label="Remaining Buffer" value="$290" tone="primary" />,
-  },
-];
+export function HowItWorks({ demo }: { demo: LandingDemo }) {
+  const steps = [
+    {
+      number: 1,
+      title: "Set your monthly budget",
+      description: "Define your total monthly spending pool for the month.",
+      preview: (
+        <StatPill
+          label={demo.budgetLabel}
+          value={formatDemoMoney(demo.budget, 0)}
+        />
+      ),
+    },
+    {
+      number: 2,
+      title: "Create your categories",
+      description: "Assign your money to the envelopes that matter to you.",
+      preview: (
+        <PillList
+          items={demo.categories.slice(0, 3).map((category) => ({
+            label: category.name,
+            value: formatDemoMoney(category.planned, 0),
+          }))}
+        />
+      ),
+    },
+    {
+      number: 3,
+      title: "Add your expenses",
+      description:
+        "Type the amount and category as you spend. Fast & deliberate.",
+      preview: (
+        <PillList
+          tone="primary"
+          items={demo.recentTransactions.slice(0, 2).map((transaction) => ({
+            label: transaction.title,
+            value: `-${formatDemoMoney(transaction.amount)}`,
+          }))}
+        />
+      ),
+    },
+    {
+      number: 4,
+      title: "Track remaining money",
+      description: "Watch balances update instantly so you always feel calm.",
+      preview: (
+        <StatPill
+          label="Remaining Budget"
+          value={formatDemoMoney(demo.remaining, 0)}
+          tone="primary"
+        />
+      ),
+    },
+  ];
 
-export function HowItWorks() {
   return (
     <section
       id="how-it-works"
@@ -126,7 +137,7 @@ export function HowItWorks() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <Reveal key={step.number} delay={index * 100} className="h-full">
               <div className="flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface p-6 transition duration-300 ease-out hover:border-border-strong hover:shadow-card-hover">
                 <span className="flex size-8 items-center justify-center rounded-full bg-primary-soft text-sm font-bold text-foreground">

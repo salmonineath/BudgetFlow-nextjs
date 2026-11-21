@@ -4,14 +4,17 @@ import { MotionConfig, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+import { SectionLink } from "./section-link";
+
 import { Logo } from "@/components/ui/logo";
 
 const NAV_LINKS = [
+  { label: "Home", href: "#hero" },
   { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Preview", href: "#preview" },
-  { label: "Why SansamApp", href: "#why-sansamapp" },
-];
+  { label: "Why SansomApp", href: "#why-sansamapp" },
+] as const;
 
 const SPY_LINE_RATIO = 0.35;
 const SCROLL_IDLE_UNLOCK_MS = 150;
@@ -36,12 +39,8 @@ function findSectionAtScrollLine(): string | null {
   return current?.href ?? null;
 }
 
-// Next.js hash-only navigation uses history.pushState, which fires no event,
-// so link clicks set the active href directly. While a click-initiated smooth
-// scroll runs, scroll-spy is paused so the pill doesn't flicker through the
-// sections it passes. Next.js may start the scroll a few frames after the click,
-// so the pause first waits a grace period for scrolling to begin; once it has,
-// the pause ends on `scrollend` or when scrolling goes idle.
+// Pause scroll-spy during a selected section's smooth scroll so the active
+// pill doesn't flicker through intermediate sections. Resume when scrolling ends.
 function useActiveSection() {
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const spyLockedRef = useRef(false);
@@ -122,7 +121,7 @@ export function Navbar() {
               const isHighlighted =
                 link.href === (pointerHref ?? focusedHref ?? activeHref);
               return (
-                <Link
+                <SectionLink
                   key={link.href}
                   href={link.href}
                   onClick={() => selectHref(link.href)}
@@ -156,7 +155,7 @@ export function Navbar() {
                   <span className="relative text-background opacity-75 mix-blend-difference">
                     {link.label}
                   </span>
-                </Link>
+                </SectionLink>
               );
             })}
           </nav>
@@ -164,13 +163,13 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           <Link
-            href="#"
+            href="/login"
             className="text-sm font-medium text-foreground hover:text-muted-foreground"
           >
-            Log In
+            Login
           </Link>
           <Link
-            href="#"
+            href="/register"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-foreground transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-hover"
           >
             Get Started
@@ -179,7 +178,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2 md:hidden">
           <Link
-            href="#"
+            href="/register"
             className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-foreground transition-transform duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-hover"
           >
             Get Started
@@ -210,21 +209,21 @@ export function Navbar() {
       {menuOpen && (
         <nav className="flex flex-col gap-1 border-t border-border bg-background px-6 py-4 md:hidden">
           {NAV_LINKS.map((link) => (
-            <Link
+            <SectionLink
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
               className="rounded-lg px-2 py-2.5 text-sm font-medium text-muted-foreground hover:bg-surface-muted hover:text-foreground"
             >
               {link.label}
-            </Link>
+            </SectionLink>
           ))}
           <Link
-            href="#"
+            href="/login"
             onClick={() => setMenuOpen(false)}
             className="rounded-lg px-2 py-2.5 text-sm font-medium text-foreground hover:bg-surface-muted"
           >
-            Log In
+            Login
           </Link>
         </nav>
       )}
